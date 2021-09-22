@@ -1,0 +1,22 @@
+{
+  "name": "dhi-react-app",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "This is DHI react template generator. Built to make creating react app more efficient and faster especially when you are starting new react app project for the first time.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "dhi",
+    "react",
+    "app",
+    "nextjs"
+  ],
+  "author": "DHI",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "shelljs": "^0.8.4"
+  }
+}
