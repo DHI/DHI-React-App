@@ -3,20 +3,27 @@
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
-  "description": "This is DHI react template generator. Built to make creating react app more efficient and faster especially when you are starting new react app project for the first time.",
+  "description": "This is DHI react template generator. Built to make creating react app more efficient and faster especially when you are starting new react app project with typescript and DHI style.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "dhi-react-app": "bin/dhi-react-app.js"
   },
   "keywords": [
     "cli",
     "dhi",
     "react",
     "app",
-    "nextjs"
+    "nextjs",
+    "react-script"
   ],
   "author": "DHI",
   "dependencies": {
+    "arg": "^5.0.1",
     "colors": "^1.4.0",
+    "esm": "^3.2.25",
+    "inquirer": "^8.1.5",
     "shelljs": "^0.8.4"
   }
 }
