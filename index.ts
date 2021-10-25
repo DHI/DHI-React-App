@@ -3,13 +3,13 @@
 let shell = require("shelljs");
 let colors = require("colors");
 
-export const createProject = async (opt) => {
+export const createProject = async (opt: { name: any; template: string; runInstall: any; }) => {
   let appName = opt.name;
   let appDirectory = `${process.cwd()}/${appName}`;
-  let success = false;
+  let success: boolean = false;
 
-  console.log(`\nPlease wait while we preparing the template for you...`.blue);
-  console.log("Just sit back and relax, take your coffee. 😊\n".blue);
+  console.log(`\nPlease wait while we preparing the template for you...`, colors.blue);
+  console.log("Just sit back and relax, take your coffee. 😊\n", colors.blue);
 
   switch (opt.template.toLowerCase()) {
     case "next.js":
@@ -24,8 +24,7 @@ export const createProject = async (opt) => {
 
   if (!success) {
     console.log(
-      `Something went wrong while trying to create a new React app using ${opt.template}`
-        .red
+      `Something went wrong while trying to create a new React app using ${opt.template}`, colors.red
     );
     return false;
   }
@@ -51,65 +50,65 @@ export const createProject = async (opt) => {
   console.log("==================================================");
 };
 
-const createNextJs = (appName) => {
+const createNextJs = (appName: any): Promise<boolean> => {
   return new Promise((resolve) => {
     if (appName) {
-      shell.exec(`npx create-next-app ${appName} --typescript`, (code) => {
+      shell.exec(`npx create-next-app ${appName} --typescript`, (code: any) => {
         console.log("Exited with code ", code);
         console.log("Created next.js app");
         resolve(true);
       });
     } else {
-      console.log("\nNo app name was provided.".red);
+      console.log("\nNo app name was provided.", colors.red);
       console.log("\nProvide an app name in the following format: ");
-      console.log("\ndhi-react-app ", "app-name\n".cyan);
+      console.log("\ndhi-react-app ", "app-name\n", colors.cyan);
       resolve(false);
     }
   });
 };
 
-const createReactApp = (appName) => {
+const createReactApp = (appName: any): Promise<boolean> => {
   return new Promise((resolve) => {
     if (appName) {
       shell.exec(
         `npx create-react-app ${appName} --template typescript`,
-        (code) => {
+        (code: any) => {
           console.log("Exited with code ", code);
           console.log("Created react app");
           resolve(true);
         }
       );
     } else {
-      console.log("\nNo app name was provided.".red);
+      console.log("\nNo app name was provided.", colors.red);
       console.log("\nProvide an app name in the following format: ");
-      console.log("\ndhi-react-app ", "app-name\n".cyan);
+      console.log("\ndhi-react-app ", "app-name\n", colors.cyan);
       resolve(false);
     }
   });
 };
 
-const cdIntoNewApp = (appDirectory) => {
+const cdIntoNewApp = (appDirectory: string): Promise<boolean> => {
   return new Promise((resolve) => {
     shell.cd(appDirectory);
-    resolve();
+    resolve(true);
   });
 };
 
-const installPackages = (opt) => {
+const installPackages = (opt: { name?: any; template?: string; runInstall?: any; stateManagement?: any; }): Promise<boolean> => {
   return new Promise((resolve) => {
     switch (opt.stateManagement.toLowerCase()) {
       case "redux":
-        console.log("\nInstalling redux react-router react-redux redux-thunk react-router-dom...\n".cyan);
+        console.log("\nInstalling redux react-router react-redux redux-thunk react-router-dom...\n", colors.cyan);
         shell.exec(
           `yarn add -D redux react-router react-redux redux-thunk react-router-dom`,
           () => {
-            console.log("\nFinished installing packages\n".green);
-            resolve();
+            console.log("\nFinished installing packages\n", colors.green);
+            resolve(true);
           }
         );
         break;
       default:
-        resolve();
+        resolve(true);
         break;
     }
   });
