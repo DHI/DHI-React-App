@@ -1,11 +1,13 @@
-import arg from "arg";
 import inquirer from "inquirer";
-import { createProject } from "./index";
+import { createProject } from "./cli-helper";
+import { Options } from "./types";
 
-function parseArgumentsIntoOptions(rawArgs) {
+const arg = require("arg");
+
+function parseArgumentsIntoOptions(rawArgs: string[]): Options {
   const args = arg(
     {
-      "--git": Boolean || string,
+      "--git": Boolean,
       "--default": Boolean,
       "--install": Boolean,
       "-g": "--git",
@@ -26,7 +28,7 @@ function parseArgumentsIntoOptions(rawArgs) {
   };
 }
 
-async function promptForMissingOptions(options) {
+async function promptForMissingOptions(options: Options): Promise<Options> {
   const defaultName = "my-app";
   const defaultTemplate = "Next.js";
   const defaultStateManagement = "None";
@@ -103,7 +105,7 @@ async function promptForMissingOptions(options) {
     });
   }
 
-  const answers = await inquirer.prompt(questions);
+  const answers: Options = await inquirer.prompt(questions);
 
   return {
     ...options,
@@ -111,7 +113,7 @@ async function promptForMissingOptions(options) {
   };
 }
 
-export async function cli(args) {
+export async function cli(args: string[]) {
   let options = parseArgumentsIntoOptions(args);
   options = await promptForMissingOptions(options);
   await createProject(options);
