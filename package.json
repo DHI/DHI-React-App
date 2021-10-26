@@ -1,14 +1,14 @@
 {
   "name": "dhi-react-app",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "./bin/index.js",
   "license": "MIT",
   "description": "This is DHI react template generator. Built to make creating react app more efficient and faster especially when you are starting new react app project with typescript and DHI style.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "dhi-react-app": "bin/dhi-react-app.js"
+    "dhi-react-app": "./bin/index.js"
   },
   "keywords": [
     "cli",

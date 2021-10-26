@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 
-let shell = require("shelljs");
-let colors = require("colors");
+import 'colors'
+import { Options } from "./types";
 
-export const createProject = async (opt: { name: any; template: string; runInstall: any; }) => {
+const shell = require("shelljs");
+
+export const createProject = async (opt: Options) => {
   let appName = opt.name;
   let appDirectory = `${process.cwd()}/${appName}`;
   let success: boolean = false;
 
-  console.log(`\nPlease wait while we preparing the template for you...`, colors.blue);
-  console.log("Just sit back and relax, take your coffee. 😊\n", colors.blue);
+  console.log(`\nPlease wait while we preparing the template for you...`.blue);
+  console.log("Just sit back and relax, take your coffee. 😊\n".blue);
 
   switch (opt.template.toLowerCase()) {
     case "next.js":
@@ -24,7 +26,7 @@ export const createProject = async (opt: { name: any; template: string; runInsta
 
   if (!success) {
     console.log(
-      `Something went wrong while trying to create a new React app using ${opt.template}`, colors.red
+      `Something went wrong while trying to create a new React app using ${opt.template}`.red
     );
     return false;
   }
@@ -59,9 +61,9 @@ const createNextJs = (appName: any): Promise<boolean> => {
         resolve(true);
       });
     } else {
-      console.log("\nNo app name was provided.", colors.red);
+      console.log("\nNo app name was provided.".red);
       console.log("\nProvide an app name in the following format: ");
-      console.log("\ndhi-react-app ", "app-name\n", colors.cyan);
+      console.log("\ndhi-react-app ", "app-name\n".cyan);
       resolve(false);
     }
   });
@@ -79,9 +81,9 @@ const createReactApp = (appName: any): Promise<boolean> => {
         }
       );
     } else {
-      console.log("\nNo app name was provided.", colors.red);
+      console.log("\nNo app name was provided.".red);
       console.log("\nProvide an app name in the following format: ");
-      console.log("\ndhi-react-app ", "app-name\n", colors.cyan);
+      console.log("\ndhi-react-app ", "app-name\n".cyan);
       resolve(false);
     }
   });
@@ -98,11 +100,11 @@ const installPackages = (opt: { name?: any; template?: string; runInstall?: any;
   return new Promise((resolve) => {
     switch (opt.stateManagement.toLowerCase()) {
       case "redux":
-        console.log("\nInstalling redux react-router react-redux redux-thunk react-router-dom...\n", colors.cyan);
+        console.log("\nInstalling redux react-router react-redux redux-thunk react-router-dom...\n".cyan);
         shell.exec(
           `yarn add -D redux react-router react-redux redux-thunk react-router-dom`,
           () => {
-            console.log("\nFinished installing packages\n", colors.green);
+            console.log("\nFinished installing packages\n".green);
             resolve(true);
           }
         );

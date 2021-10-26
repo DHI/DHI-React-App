@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "esnext",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "lib": ["es6", "es2015", "dom"],
+    "declaration": true,
+    "outDir": "bin",
+    "rootDir": "src",
     "strict": true,
-    "skipLibCheck": true
+    "types": ["node"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "include": ["index.ts"]
 }
